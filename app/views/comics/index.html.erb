@@ -5,3 +5,8 @@
   <% end %>
 </ul>
 <%= link_to "Add New Comic", new_comic_path %>
+
+<%= form_with url: comics_path, method: :get do |form| %>
+  <%= form.text_field :search, placeholder: "Search by title" %>
+  <%= form.submit "Search" %>
+<% end %>
