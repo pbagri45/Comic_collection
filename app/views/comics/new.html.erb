@@ -1,2 +1,16 @@
-<h1>Comics#new</h1>
-<p>Find me in app/views/comics/new.html.erb</p>
+<h1>Add New Comic</h1>
+<%= form_with model: @comic do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+
+  <%= form.label :description %>
+  <%= form.text_area :description %>
+
+  <%= form.label :publisher_id %>
+  <%= form.collection_select :publisher_id, Publisher.all, :id, :name %>
+
+  <%= form.label :series_id %>
+  <%= form.collection_select :series_id, Series.all, :id, :name %>
+
+  <%= form.submit %>
+<% end %>

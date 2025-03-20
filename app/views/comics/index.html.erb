@@ -1,2 +1,7 @@
-<h1>Comics#index</h1>
-<p>Find me in app/views/comics/index.html.erb</p>
+<h1>Comic Collection</h1>
+<ul>
+  <% @comics.each do |comic| %>
+    <li><%= link_to comic.title, comic_path(comic) %></li>
+  <% end %>
+</ul>
+<%= link_to "Add New Comic", new_comic_path %>
