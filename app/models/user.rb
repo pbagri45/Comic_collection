@@ -1,2 +1,4 @@
 class User < ApplicationRecord
-end
+    has_many :comics
+    has_many :reviews
+  end
