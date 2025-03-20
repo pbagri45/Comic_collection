@@ -10,3 +10,13 @@
   <%= form.text_field :search, placeholder: "Search by title" %>
   <%= form.submit "Search" %>
 <% end %>
+<div class="pagination">
+  <%= will_paginate @comics %>
+</div>
+
+<%= form_with url: comics_path, method: :get do |form| %>
+    <%= form.text_field :title, placeholder: "Search by title" %>
+    <%= form.collection_select :publisher_id, Publisher.all, :id, :name, include_blank: "Select Publisher" %>
+    <%= form.collection_select :series_id, Series.all, :id, :name, include_blank: "Select Series" %>
+    <%= form.submit "Search" %>
+  <% end %>
