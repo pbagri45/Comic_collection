@@ -20,8 +20,7 @@ Rails.application.routes.draw do
 
 
   resources :comics do
-    resources :reviews, only: [:new, :create]
+    resources :reviews, only: [ :new, :create ]
   end
   root "comics#index"
-   
 end

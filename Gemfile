@@ -59,7 +59,11 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'will_paginate', '~> 3.3'
+gem "will_paginate", "~> 3.3"
 
-gem 'geocoder'
-gem 'rubocop', require: false
+gem "geocoder"
+gem "rubocop", require: false
+
+group :development, :test do
+  gem 'rspec-rails'
+end
