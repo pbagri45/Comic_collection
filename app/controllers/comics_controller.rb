@@ -28,7 +28,7 @@ class ComicsController < ApplicationController
 
   def create
     @comic = Comic.new(comic_params)
-    
+    @comic.user = User.first 
     if @comic.save
       redirect_to @comic, notice: "Comic was successfully created."
     else
