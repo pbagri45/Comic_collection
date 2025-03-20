@@ -1,0 +1,89 @@
+<!-- app/views/pages/about.html.erb -->
+<h1>About This Project</h1>
+<br>
+<p>
+  This project is a Comic Collection app where users can browse, search, and add reviews for their favorite comics. 
+  The system allows users to create new comics, associate them with a publisher and series, and leave ratings and reviews.
+</p>
+<br>
+
+<h2>Project Overview</h2>
+<p>
+  The Comic Collection app was built using Ruby on Rails with a relational database that includes entities such as:
+  <ul>
+    <li><strong>Users</strong>: Can add comics, write reviews, and search for comics.</li>
+    <li><strong>Comics</strong>: Contains title, description, publisher, and series. Users can add new comics and write reviews.</li>
+    <li><strong>Publishers</strong>: Comics are associated with publishers.</li>
+    <li><strong>Series</strong>: Comics are grouped by series.</li>
+    <li><strong>Reviews</strong>: Users can leave reviews for comics.</li>
+  </ul>
+</p>
+<br>
+<h5>Datasets</h5>
+<p>Data Types:<br>
+Datasets can include various types of data:<br>
+Numerical Data: Data that consists of numbers (e.g., age, salary, temperature).<br>
+Categorical Data: Data that can be divided into categories (e.g., gender, country, product type).<br>
+Text Data: Data represented in text (e.g., reviews, articles, names).<br>
+Time-Series Data: Data points indexed by time (e.g., stock prices, weather data).<br>
+Images/Videos: Data in visual format (e.g., photos, scans, videos).<br>
+Geospatial Data: Data that includes geographic locations (e.g., GPS coordinates, maps).<br>
+<br>
+Structure of a Dataset:<br>
+Rows (Records/Entries): Each row typically represents a single data point or record. For example, in a dataset of people, each row might represent an individual person.<br>
+Columns (Attributes/Features): Each column represents a specific characteristic or feature of the data. For instance, in a dataset of books, columns might include title, author, and publication year.<br>
+<br>
+Types of Datasets:<br>
+Structured Datasets: Data is organized in rows and columns, often found in relational databases or spreadsheets (e.g., CSV, Excel files).<br>
+Unstructured Datasets: Data is not organized in a predefined manner and may require preprocessing before it can be analyzed (e.g., images, audio files).<br>
+Semi-Structured Datasets: Data that does not conform strictly to a table but still has some organizational structure (e.g., JSON, XML).<br>
+<br>
+<h2>Entity-Relationship Diagram (ERD)</h2>
+<p>
+  Below is the ERD that shows how all the entities in the database are related:
+</p>
+<h3>Explanation of Relationships<h3>
+<p>One-to-Many Relationships:<br>
+A User has many Comics and many Reviews.<br>
+A Publisher has many Series and many Comics.<br>
+A Series has many Comics.<br>
+A Comic has many Reviews.<br>
+Many-to-One Relationships:<br>
+A Comic belongs to one User, one Publisher, and one Series.<br>
+A Review belongs to one User and one Comic.<br>
+A Series belongs to one Publisher.<br>
+
+
+<!-- Add the image of your ERD here -->
+<%= image_tag "erd.png", alt: "Entity Relationship Diagram", class: "erd-image" %>
+
+<h4>Relationships</h4>
+<p>Users:<br>
+A User can create many Comics.<br>
+A User can write many Reviews.<br>
+Comics:<br>
+A Comic belongs to a User.<br>
+A Comic belongs to a Publisher.<br>
+A Comic belongs to a Series.<br>
+A Comic can have many Reviews.<br>
+Publishers:<br>
+A Publisher can have many Series.<br>
+A Publisher can have many Comics.<br>
+Series:<br>
+A Series belongs to a Publisher.<br>
+A Series can have many Comics.<br>
+Reviews:<br>
+A Review belongs to a User.<br>
+A Review belongs to a Comic.<br>
+
+<br>
+<h2>Technologies Used</h2>
+<ul>
+  <li>Ruby on Rails</li>
+  <li>PostgreSQL</li>
+  <li>HTML, CSS, JavaScript</li>
+  <li>Bootstrap for responsive design</li>
+  <li>Google Maps API for comic location (optional)</li>
+</ul>
+
+<p>Thank you for exploring the Comic Collection app!</p>

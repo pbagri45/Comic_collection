@@ -1,22 +1,42 @@
 <h1>Comic Collection</h1>
+
+<%= link_to "Add New Comic", new_comic_path, class: "add-new-comic-link" %>
+
+<%= form_with url: comics_path, method: :get, local: true do |form| %>
+  <div class="simple-search-bar">
+    <%= form.text_field :simple_search, placeholder: "Search by Comic Title - Simple " %>
+    <%= form.submit "Search" %>
+  </div>
+<% end %>
+
+
+<!-- Search and Filter Form -->
+<%= form_with url: comics_path, method: :get, local: true do |form| %>
+  <div class="filters">
+    <%= form.text_field :search, placeholder: "Search by title", value: params[:search] %>
+    <%= form.collection_select :publisher_id, Publisher.all, :id, :name, include_blank: "Select Publisher", selected: params[:publisher_id] %>
+    <%= form.collection_select :series_id, Series.all, :id, :name, include_blank: "Select Series", selected: params[:series_id] %>
+    <%= form.submit "Search" %>
+  </div>
+<% end %>
+
+<!-- Comics List -->
 <ul>
   <% @comics.each do |comic| %>
     <li><%= link_to comic.title, comic_path(comic) %></li>
-  <% end %>
+  <!-- Edit Button -->
+      <%= link_to 'Edit', edit_comic_path(comic), class: 'edit-button' %>
+  
+    <% end %>
 </ul>
-<%= link_to "Add New Comic", new_comic_path %>
 
-<%= form_with url: comics_path, method: :get do |form| %>
-  <%= form.text_field :search, placeholder: "Search by title" %>
-  <%= form.submit "Search" %>
-<% end %>
+
+  <%= link_to 'About', about_path, class: 'about-button' %>
+
+
+<!-- Pagination -->
 <div class="pagination">
   <%= will_paginate @comics %>
+  
 </div>
 
-<%= form_with url: comics_path, method: :get do |form| %>
-    <%= form.text_field :title, placeholder: "Search by title" %>
-    <%= form.collection_select :publisher_id, Publisher.all, :id, :name, include_blank: "Select Publisher" %>
-    <%= form.collection_select :series_id, Series.all, :id, :name, include_blank: "Select Series" %>
-    <%= form.submit "Search" %>
-  <% end %>

@@ -1,3 +1,5 @@
+<!-- app/views/comics/show.html.erb -->
+
 <h1><%= @comic.title %></h1>
 <p><%= @comic.description %></p>
 <p>Publisher: <%= @comic.publisher.name %></p>
@@ -8,21 +10,32 @@
   <p><%= review.content %> - Rating: <%= review.rating %></p>
 <% end %>
 
-<%= link_to "Add Review", new_comic_review_path(@comic) %>
+<%= link_to "Add Review", new_comic_review_path(@comic), class: "add-review-btn" %>
 
-<div id="map" style="height: 400px; width: 100%;"></div>
 
-<script>
-  function initMap() {
-    const location = { lat: <%= @comic.latitude %>, lng: <%= @comic.longitude %> };
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 15,
-      center: location,
-    });
-    new google.maps.Marker({
-      position: location,
-      map: map,
-    });
-  }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+
+<!-- Google Map integration (with fallback for missing coordinates) -->
+<% if @comic.latitude.present? && @comic.longitude.present? %>
+  <div id="map" style="height: 400px; width: 100%;"></div>
+  <script>
+    function initMap() {
+      const location = { lat: <%= @comic.latitude %>, lng: <%= @comic.longitude %> };
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: location,
+      });
+      new google.maps.Marker({
+        position: location,
+        map: map,
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+<% else %>
+  <p>Location not available for this comic.</p>
+<% end %>
+
+<!-- Back to Home Button -->
+<%= link_to "Back to Home", comics_path, class: "back-home-btn" %>
+
+

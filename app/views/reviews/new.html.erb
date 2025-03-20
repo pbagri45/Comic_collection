@@ -1,2 +1,17 @@
-<h1>Reviews#new</h1>
-<p>Find me in app/views/reviews/new.html.erb</p>
+<h1>Add a Review for <%= @comic.title %></h1>
+
+<%= form_with(model: [ @comic, @comic.reviews.build ], local: true) do |form| %>
+  <div class="field">
+    <%= form.label :content, "Review Content" %>
+    <%= form.text_area :content, placeholder: "Write your review here..." %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating, "Rating (1-5)" %>
+    <%= form.number_field :rating, in: 1..5, step: 1, placeholder: "Rating (1-5)" %>
+  </div>
+
+  <%= form.submit "Submit Review" %>
+<% end %>
+
+<%= link_to 'Back to Comic', comic_path(@comic) %>
